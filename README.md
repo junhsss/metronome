@@ -1,6 +1,6 @@
 ## Metronome
 
-A precise, terminal-based CLI metronome with audio and live controls.
+A precise, terminal-based CLI metronome.
 
 <p align="center">
   <img src="demo.gif" alt="animated" width="100%" />
@@ -9,15 +9,29 @@ A precise, terminal-based CLI metronome with audio and live controls.
 ### Install
 
 ```bash
-cargo build --release
-# optional
-cargo install --path .
+curl --proto '=https' --tlsv1.2 -LsSf https://github.com/junhsss/metronome/releases/download/v0.1.0/metronome-installer.sh | sh
 ```
 
 ### Run
 
 ```bash
 metronome [OPTIONS] [BPM] [SUBCOMMAND]
+```
+
+### Examples
+
+```bash
+# Start at 100 BPM
+metronome 100
+
+# Specify signature, subdivision, sound, and BPM flag
+metronome --signature 7/8 --subdivision sixteenth --sound wood --bpm 140
+
+# Ramp from 100 to 140 BPM over 2 minutes
+metronome ramp "100..140@2m"
+
+# Tap tempo, then start at the measured BPM
+metronome tap
 ```
 
 ### Options
@@ -44,19 +58,3 @@ metronome [OPTIONS] [BPM] [SUBCOMMAND]
 - **s**: Cycle subdivision (quarter → eighth → triplet → sixteenth)
 - **Tab**: Cycle common signatures (4/4 → 3/4 → 6/8 → 7/8)
 - **h**: Toggle on-screen help
-
-### Examples
-
-```bash
-# Start at 100 BPM
-metronome 100
-
-# Specify signature, subdivision, sound, and BPM flag
-metronome --signature 7/8 --subdivision sixteenth --sound wood --bpm 140
-
-# Ramp from 100 to 140 BPM over 2 minutes
-metronome ramp "100..140@2m"
-
-# Tap tempo, then start at the measured BPM
-metronome tap
-```
